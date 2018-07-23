@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">CameraExercise</string>
+    <string name="default_image_before_pictures_are_taken">Default image before pictures are taken</string>
+</resources>
