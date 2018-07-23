@@ -30,19 +30,19 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/takePicture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:text="Take Picture"
-            app:layout_constraintBaseline_toBaselineOf="@+id/button7"
-            app:layout_constraintEnd_toStartOf="@+id/button7"
+            app:layout_constraintBaseline_toBaselineOf="@+id/selectFile"
+            app:layout_constraintEnd_toStartOf="@+id/selectFile"
             app:layout_constraintHorizontal_bias="0.38"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/selectFile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -55,18 +55,19 @@
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/textView6"
+    <EditText
+        android:id="@+id/webAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Introdueix web"
         android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button9"
+        android:visibility="visible"
+        app:layout_constraintBaseline_toBaselineOf="@+id/webSurfer"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/webSurfer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -76,7 +77,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/phoneCaller"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -85,14 +86,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button9" />
 
-    <TextView
-        android:id="@+id/textView7"
+    <EditText
+        android:id="@+id/phoneNumberContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Introdueix telèfon"
+        android:hint="Introdueix telèfon"
         android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button10"
+        app:layout_constraintBaseline_toBaselineOf="@+id/phoneCaller"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -107,7 +108,7 @@
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:text="Hora"
@@ -123,27 +124,17 @@
         android:layout_marginTop="8dp"
         android:text="PROGRAM"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button10" />
+        app:layout_constraintTop_toBottomOf="@+id/phoneCaller" />
 
     <TextView
-        android:id="@+id/textViewMultilineText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="Text"
-        android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button11"
-        app:layout_constraintStart_toEndOf="@+id/textView8" >
-        <EditText
             android:id="@+id/multilineText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:ems="10"
-            android:inputType="textMultiLine"
+            android:text="Text"
             app:layout_constraintBaseline_toBaselineOf="@+id/button12"
-            app:layout_constraintStart_toStartOf="parent" /></TextView>
-    
+            app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button12"
