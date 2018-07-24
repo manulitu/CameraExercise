@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     Button takePicture;
     Button selectFile;
     Uri pictureFile;
+    String filePath;
     ImageView image;
     EditText phoneNumberContainer;
     Button phoneCaller;
@@ -106,6 +107,9 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         pictureFile = Uri.fromFile(getOutputMediaFile());
+        if(filePath == ""){
+            filePath = pictureFile.getPath().toString();
+        }
         intent.putExtra(MediaStore.EXTRA_OUTPUT, pictureFile);
 
         startActivityForResult(intent, 100);
@@ -123,10 +127,12 @@ public class MainActivity extends AppCompatActivity {
 
     protected void selectAFile(){//TODO
 
+        //TODO display all the files in another activity
         Uri images;
         images = new Uri.fromFile(getOutputMediaFile());
         InputStream imageDir = Uri.openInputStream(images);
 
+        //TODO get the selected file and put it in ImageView.
 
     }
 
