@@ -1,4 +1,4 @@
-package com.example.formacio.cameraexercise;
+package com.example.formacio.cameraexercise.View;
 
 import android.Manifest;
 import android.app.ActionBar;
@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.formacio.cameraexercise.R;
 
 import java.io.File;
 import java.io.InputStream;
@@ -128,9 +130,11 @@ public class MainActivity extends AppCompatActivity {
     protected void selectAFile(){//TODO
 
         //TODO display all the files in another activity
-        Uri images;
-        images = new Uri.fromFile(getOutputMediaFile());
+        Uri images = new Uri.fromFile(getOutputMediaFile());
         InputStream imageDir = Uri.openInputStream(images);
+
+        //TODO put an extra string array with the name of images.
+
 
         //TODO get the selected file and put it in ImageView.
 
