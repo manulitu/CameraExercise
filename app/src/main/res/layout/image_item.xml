@@ -10,13 +10,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <TextView
-        android:id="@+id/image_item_path"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBaseline_toBaselineOf="@+id/image_item_view"
-        />
-
 </android.support.constraint.ConstraintLayout>
 
 

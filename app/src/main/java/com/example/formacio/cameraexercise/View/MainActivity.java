@@ -2,10 +2,14 @@ package com.example.formacio.cameraexercise.View;
 
 import android.Manifest;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -22,6 +26,8 @@ import android.widget.Toast;
 import com.example.formacio.cameraexercise.R;
 
 import java.io.File;
+import java.io.FileDescriptor;
+import java.io.IOException;
 import java.io.InputStream;
 import java.security.Permission;
 import java.text.SimpleDateFormat;
@@ -110,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         pictureFile = Uri.fromFile(getOutputMediaFile());
         if(filePath == ""){
-            filePath = pictureFile.getPath().toString();
+            filePath = pictureFile.getPath();
         }
         intent.putExtra(MediaStore.EXTRA_OUTPUT, pictureFile);
 
@@ -120,25 +126,47 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
 
         if(requestCode == 100){
-            if(resultCode == RESULT_OK){
+            if(resultCode == Activity.RESULT_OK){
                 image.setImageURI(pictureFile);
             }
         }
 
+        if(requestCode == 11888){
+            if(resultCode == Activity.RESULT_OK){
+                Uri uri = null;
+                if(data != null){
+                    uri = data.getData();
+                    Bitmap imageBitmap = null;
+                    try {
+                        imageBitmap = getBitmapFromUri(uri);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    image.setImageBitmap(imageBitmap);
+                }
+            }
+        }
     }
 
     protected void selectAFile(){//TODO
 
-        //TODO display all the files in another activity
-        Uri images = new Uri.fromFile(getOutputMediaFile());
-        InputStream imageDir = Uri.openInputStream(images);
 
-        //TODO put an extra string array with the name of images.
+        Intent selectFileIntent= new Intent(Intent.ACTION_OPEN_DOCUMENT);
 
-
-        //TODO get the selected file and put it in ImageView.
-
+        selectFileIntent.addCategory(Intent.CATEGORY_OPENABLE);
+        selectFileIntent.setType("image/*");
+        startActivityForResult(selectFileIntent, 11888);
     }
+
+    private Bitmap getBitmapFromUri(Uri uri)throws IOException{
+        ParcelFileDescriptor parcelFileDescriptor = getContentResolver().openFileDescriptor(uri, "r");
+        assert parcelFileDescriptor != null;
+        FileDescriptor fileDescriptor;
+        fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+        return BitmapFactory.decodeFileDescriptor(fileDescriptor);
+        }
+
+
 
     public boolean isStorageReadable() {
         String state = Environment.getExternalStorageState();
