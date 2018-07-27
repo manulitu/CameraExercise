@@ -1,5 +1,6 @@
 package com.example.formacio.cameraexercise.View;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,13 +15,13 @@ public class SelectFileActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
     RecyclerView.Adapter mAdapter;
     RecyclerView.LayoutManager mLayoutManager;
-    String[] imageFiles;
+    Activity mActivity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent =getIntent();
-        imageFiles = intent.getStringArrayExtra("images");
+        //imageFiles = intent.getStringArrayExtra("images");
 
         setContentView(R.layout.activity_select_file);
         mRecyclerView = (RecyclerView)findViewById(R.id.my_recycler_view);
@@ -30,8 +31,8 @@ public class SelectFileActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new MyAdapter(imageFiles);
-        mRecyclerView.setAdapter(mAdapter);
+        //mAdapter = new MyAdapter(imageFiles);
+        //mRecyclerView.setAdapter(mAdapter);
 
     }
 

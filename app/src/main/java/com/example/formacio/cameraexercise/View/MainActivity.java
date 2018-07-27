@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_constraint);
 
         takePicture = (Button)findViewById(R.id.takePicture);
         selectFile = (Button)findViewById(R.id.selectFile);
@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         webAddress = (EditText)findViewById(R.id.webAddress);
         webSurfer = (Button)findViewById(R.id.webSurfer);
         image = (ImageView)findViewById(R.id.image);
+        phoneCaller = (Button)findViewById(R.id.phoneCaller);
 
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
             takePicture.setEnabled(false);
@@ -105,17 +106,22 @@ public class MainActivity extends AppCompatActivity {
                 }*/
             }
         });
-
-
-
-
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode==0){
+            if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED &&
+                    grantResults[1] == PackageManager.PERMISSION_GRANTED){
+                takePicture.setEnabled(true);
+            }
+        }
+    }
     protected void takeAPicture(){//TODO
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         pictureFile = Uri.fromFile(getOutputMediaFile());
-        if(filePath == ""){
+        if(filePath.equals("")){
             filePath = pictureFile.getPath();
         }
         intent.putExtra(MediaStore.EXTRA_OUTPUT, pictureFile);
@@ -184,20 +190,10 @@ public class MainActivity extends AppCompatActivity {
         Uri address = Uri.parse(url);
         Intent internetIntent = new Intent(Intent.ACTION_VIEW, address);
         startActivity(internetIntent);
-
-
     }
 
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode==0){
-            if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED &&
-                    grantResults[1] == PackageManager.PERMISSION_GRANTED){
-                takePicture.setEnabled(true);
-            }
-        }
-    }
+
     private static File getOutputMediaFile(){
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
                 "CameraExercise");
@@ -209,7 +205,5 @@ public class MainActivity extends AppCompatActivity {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         return new File(mediaStorageDir.getPath()+ File.separator + "IMG_" +
         timeStamp + ".jpg");
-
-
     }
 }

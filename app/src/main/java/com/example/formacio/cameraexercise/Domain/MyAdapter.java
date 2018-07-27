@@ -37,7 +37,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position){
         Bitmap bitmap = getBitmapFromMediaStore(position);
         if(bitmap != null) {
-            holder.mTextView.setImage(mImages[position]);
+          // holder.mTextView.setImage(mImages[position]);
         }
     }
 
